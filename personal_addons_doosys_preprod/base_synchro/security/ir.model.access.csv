@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+base_synchro_server,base.synchro.server,model_base_synchro_server,base.group_system,1,1,1,1
+ base_synchro_obj, base.synchro.obj,model_base_synchro_obj,base.group_system,1,1,1,1
+base_synchro_obj_avoid,base.synchro.obj.avoid,model_base_synchro_obj_avoid,base.group_system,1,1,1,1
+base_synchro_obj_line,base.synchro.obj.line,model_base_synchro_obj_line,base.group_system,1,1,1,1
+base_synchro_res_request,synchro.res.request,model_res_request,base.group_system,1,1,1,1
+station_synchro_report,station_synchro_report,model_station_synchro_report,base.group_system,1,1,1,1
+access_station_synchro_report,acces station_synchro_report gestion_station,base_synchro.model_station_synchro_report,petrol_station_doosys.group_station_petrol_gestio_station,1,1,1,0

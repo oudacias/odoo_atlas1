@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+       <record id="view_recette_report_tree" model="ir.ui.view">
+        <field name="name">recette.report.tree</field>
+        <field name="model">recette.report</field>
+        <field name="arch" type="xml">
+            <tree string=" " create="false" edit="false">
+                <field name="date"/>
+                <field name="station_id"/>
+                <field name="recette_id"/>
+
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+       <record model="ir.actions.act_window" id="recette_report_action">
+              <field name="name">recette_report</field>
+              <field name="res_model">recette.report</field>
+              <field name="view_mode">tree,form</field>
+
+       </record>
+
+
+
+       <menuitem name="Rapport" id="menu_recette_report" parent="menu_sap_menu"
+              action="recette_report_action" />
+  </data>
+</odoo>

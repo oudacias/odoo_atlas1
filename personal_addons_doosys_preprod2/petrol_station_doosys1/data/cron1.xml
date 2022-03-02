@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+         <record id="update_credit_partner2" model="ir.cron">
+              <field name="interval_type">days</field>
+              <field name="name">Update Partner Crédit</field>
+              <field name="numbercall">-1</field>
+              <field name="priority">5</field>
+              <field name="doall">False</field>
+              <field name="interval_number">1</field>
+              <field name="model_id" ref="model_periodic_credit"/>
+              <field name="state">code</field>
+              <field name="code">model.calcul_total_credit()</field>
+                <field name="active">True</field>
+         </record>
+    </data>
+</odoo>

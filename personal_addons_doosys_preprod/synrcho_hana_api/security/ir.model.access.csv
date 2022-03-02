@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sap_objects_admin,acces sap.objects admin,model_sap_objects,base.group_system,1,1,1,1
+access_sap_objects_line_admin,acces sap.objects.line admin,model_sap_objects_line,base.group_system,1,1,1,1
+access_sap_server_admin,acces sap_server admin,model_sap_server,base.group_system,1,1,1,1
+access_recette_report_admin,acces recette_report admin,model_recette_report,base.group_system,1,1,1,1
+

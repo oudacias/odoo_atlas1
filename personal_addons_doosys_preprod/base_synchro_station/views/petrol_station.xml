@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="list_petrol_station_synchro" model="ir.ui.view">
+        <field name="name">petrol.station.form</field>
+        <field name="model">petrol.station</field>
+        <field name="inherit_id"  ref="petrol_station_doosys.list_petrol_station" />
+        <field name="arch" type="xml">
+           <field name="id" position="after">
+                <field name="id_remote" />
+                <field name="synchro_id" invisible="1" />
+                <field name="station_synch_id" invisible="1"  />
+
+           </field>
+            <field name="bon_drh_client_id" position="after">
+                <field name="duplicate"  invisible="1" />
+               <field name="forcer"  invisible="1"  />
+                <button name="forcer_synchronisation" type="object" string="Forcer la synchronisation"  attrs="{'invisible':['|',('duplicate','=',False),('forcer','=',True)]}" groups="base.group_system"/>
+
+            </field>
+
+        </field>
+    </record>
+
+
+
+</odoo>

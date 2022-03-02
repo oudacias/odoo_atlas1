@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="view_batch_synchronisation_tree" model="ir.ui.view">
+        <field name="name">batch.synchronisation.tree</field>
+        <field name="model">batch.synchronisation</field>
+        <field name="arch" type="xml">
+            <tree string=" "   editable="top">
+                <field name="station_id"/>
+                <field name="hour" widget="float_time"/>
+                <field name="last_synchonisation_date" readonly="1"/>
+                <field name="etat" readonly="1"/>
+                <field name="nombre_tentatives" readonly="1"/>
+                <field name="method" readonly="1"/>
+
+            </tree>
+        </field>
+    </record>
+
+      <record id="action_batch_synchronisation" model="ir.actions.act_window">
+        <field name="name">batch_synchronisation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">batch.synchronisation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+
+      </record>
+
+    <menuitem id="menu_batch_synchronisation" action="action_batch_synchronisation" parent="base_synchro.next_id_63"/>
+
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<odoo>
+
+    <record id="view_lance_synchro" model="ir.ui.view">
+        <field name="name">Sap Synchronization</field>
+        <field name="model">sap.synchro.wizard</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <form string="Synchrinisation avec sap">
+
+                <footer>
+                    <button name="upload_download_multi_thread" string="Synchronize"
+                            type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_lance_synchro" model="ir.actions.act_window">
+        <field name="name">SAP Synchronization</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sap.synchro.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_lance_synchro"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_lance_synchro_finish" model="ir.ui.view">
+        <field name="name">Sap  Synchronization</field>
+        <field name="model">sap.synchro.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Synchronization Completed!">
+                  <separator string="La synchronisation avec SAP est terminer"/>
+                 <field name="message" nolabel="1" readonly="1"/>
+                <footer>
+                    <button string="Ok" class="oe_highlight" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_lance_synchro" action="action_view_lance_synchro" name="Lancer la synchronisation" parent="menu_sap_menu"/>
+
+
+
+</odoo>

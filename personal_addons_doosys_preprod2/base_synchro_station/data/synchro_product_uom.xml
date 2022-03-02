@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+         <!-- synchro.obj.line  -->
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_1" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >1</field>
+                <field name="remote_id"  >1</field>
+          </record>
+          <record forcecreate="True" id="base_synchro.synchro_product_uom_2" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >2</field>
+                <field name="remote_id"  >2</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_3" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >3</field>
+                <field name="remote_id"  >3</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_4" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >4</field>
+                <field name="remote_id"  >4</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_5" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >5</field>
+                <field name="remote_id"  >5</field>
+          </record>
+         <record forcecreate="True" id="base_synchro.synchro_product_uom_6" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >6</field>
+                <field name="remote_id"  >6</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_7" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >7</field>
+                <field name="remote_id"  >7</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_8" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >8</field>
+                <field name="remote_id"  >8</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_9" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >9</field>
+                <field name="remote_id"  >9</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_10" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >10</field>
+                <field name="remote_id"  >10</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_11" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >11</field>
+                <field name="remote_id"  >11</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_12" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >12</field>
+                <field name="remote_id"  >12</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_13" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >13</field>
+                <field name="remote_id"  >13</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_14" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >14</field>
+                <field name="remote_id"  >14</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_15" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >15</field>
+                <field name="remote_id"  >15</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_16" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >16</field>
+                <field name="remote_id"  >16</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_17" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >17</field>
+                <field name="remote_id"  >17</field>
+          </record>
+         <record forcecreate="True" id="base_synchro.synchro_product_uom_18" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >18</field>
+                <field name="remote_id"  >18</field>
+          </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_uom_19" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >19</field>
+                <field name="remote_id"  >19</field>
+          </record>
+
+         <record forcecreate="True" id="base_synchro.synchro_product_uom_20" model="base.synchro.obj.line">
+                 <field name="obj_id" ref="base_synchro.synchro_product_uom" />
+                 <field name="local_id"  >20</field>
+                <field name="remote_id"  >20</field>
+          </record>
+
+    </data>
+</odoo>

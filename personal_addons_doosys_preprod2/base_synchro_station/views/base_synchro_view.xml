@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_base_synchro_server_form" model="ir.ui.view">
+        <field name="name">base.synchro.server.form</field>
+        <field name="model">base.synchro.server</field>
+        <field name="inherit_id"  ref="base_synchro.view_base_synchro_server_form" />
+        <field name="arch" type="xml">
+           <field name="server_db" position="after">
+                <field name="station_remote_id" />
+
+                <field name="station_id" />
+                    <field name="station_synch_id" />
+                </field>
+
+        </field>
+    </record>
+
+       <menuitem action="base_synchro.action_base_synchro_server_tree" id="petrol_station_doosys.synchro_server_tree_menu_id"
+              parent="petrol_station_doosys.petrol_station_configuration" name="Serveurs à synchroniser"/>
+     <menuitem action="base_synchro.action_view_base_synchro" id="action_view_base_synchro_menu"
+              parent="petrol_station_doosys.petrol_station_configuration" name="Synchroniser"/>
+
+</odoo>

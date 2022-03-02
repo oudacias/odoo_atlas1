@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+                <function model="petrol.station.recette" name="update_station_recette_id" />
+
+        <!-- server -->
+             <record forcecreate="True" id="base_synchro.server_1" model="base.synchro.server">
+                <field name="name">atlas_central</field>
+                <field name="password">2019</field>
+                 <field name="server_port">8069</field>
+                 <field name="login">admin</field>
+
+                  <field name="server_url">localhost</field>
+                 <field name="station_remote_id">3</field>
+                  <field name="server_db">non</field>
+            </record>
+            <!-- objects -->
+ <!-- taxs -->
+             <record forcecreate="True" id="base_synchro.synchro_account_tax" model="base.synchro.obj">
+                <field name="name">account.tax</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                  <field name="initial"  >1</field>
+
+                 <field name="model_id" ref="account.model_account_tax" />
+                <field name="sequence"  >0</field>
+            </record>
+          <!--  Price -->
+
+
+
+        <record forcecreate="True" id="base_synchro.synchro_track_product_price_cost" model="base.synchro.obj">
+                <field name="name">track.product.price.cost</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >0</field>
+                 <field name="initial"  >1</field>
+                 <field name="model_id" ref="track_product_price_cost.model_track_product_price_cost" />
+                <field name="sequence"  >3</field>
+
+            </record>
+         <!--  Produits -->
+
+          <record forcecreate="True" id="base_synchro.synchro_product_category" model="base.synchro.obj">
+                <field name="name">product_category</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_category" />
+               <field name="initial"  >1</field>
+                <field name="sequence"  >4</field>
+
+            </record>
+            <record forcecreate="True" id="base_synchro.synchro_product_uom_categ" model="base.synchro.obj">
+                <field name="name">product.uom.categ</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_uom_categ" />
+                <field name="sequence"  >4</field>
+                 <field name="initial"  >1</field>
+
+            </record>
+            <record forcecreate="True" id="base_synchro.synchro_product_uom" model="base.synchro.obj">
+                <field name="name">product.uom</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_uom" />
+                <field name="sequence"  >6</field>
+                 <field name="initial"  >1</field>
+
+             </record>
+
+            <record forcecreate="True" id="base_synchro.synchro_product_template" model="base.synchro.obj">
+                <field name="name">product.template</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_template" />
+                <field name="sequence"  >7</field>
+                 <field name="initial"  >1</field>
+
+            </record>
+  <!--
+         <record forcecreate="True" id="base_synchro.synchro_product_product" model="base.synchro.obj">
+                <field name="name">product.product</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_product" />
+                <field name="sequence"  >7</field>
+                 <field name="initial"  >1</field>
+
+            </record>
+
+        -->
+          <record forcecreate="True" id="base_synchro.synchro_product_pricelist" model="base.synchro.obj">
+                <field name="name">product.pricelist</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_pricelist" />
+                <field name="sequence"  >8</field>
+            </record>
+        <record forcecreate="True" id="base_synchro.synchro_product_pricelist_item" model="base.synchro.obj">
+                <field name="name">product.pricelist.item</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_pricelist_item" />
+                <field name="sequence"  >9</field>
+
+            </record>
+ <!--
+            <record forcecreate="True" id="base_synchro.synchro_product_product" model="base.synchro.obj">
+                <field name="name">product_product</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="product.model_product_product" />
+                <field name="sequence"  >4</field>
+
+            </record>
+ -->
+
+
+
+         <!-- station objet -->
+
+
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station" model="base.synchro.obj">
+                <field name="name">petrol.station</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                <field name="domain"  >[('id','=',station_remote_id)]</field>
+
+                <field name="model_id" ref="petrol_station_doosys.model_petrol_station" />
+                <field name="sequence"  >10</field>
+        </record>
+
+          <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_remote" model="base.synchro.obj.avoid">
+                <field name="name">id_remote</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+            <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_magasin_code" model="base.synchro.obj.avoid">
+                <field name="name">magasin_code</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+         <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_compte_caisse" model="base.synchro.obj.avoid">
+                <field name="name">compte_caisse</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+         <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_compte_cheque" model="base.synchro.obj.avoid">
+                <field name="name">compte_cheque</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_compte_carte_credite" model="base.synchro.obj.avoid">
+                <field name="name">compte_carte_credite</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_compte_bancaires" model="base.synchro.obj.avoid">
+                <field name="name">compte_bancaires</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_comission_product_id" model="base.synchro.obj.avoid">
+                <field name="name">comission_product_id</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_warehouse_sap" model="base.synchro.obj.avoid">
+                <field name="name">warehouse_sap</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_compte_commission" model="base.synchro.obj.avoid">
+                <field name="name">compte_commission</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_compte_client_comptant" model="base.synchro.obj.avoid">
+                <field name="name">compte_client_comptant</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+        <record forcecreate="True" id="base_synchro_station.synchro_petrol_station_avoid_mac_adress" model="base.synchro.obj.avoid">
+                <field name="name">mac_adress</field>
+                <field name="obj_id" ref="base_synchro_station.synchro_petrol_station" />
+          </record>
+
+         <record forcecreate="True" id="base_synchro.synchro_type_paiement" model="base.synchro.obj">
+                <field name="name">type.paiement</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_type_paiement" />
+                <field name="sequence"  >11</field>
+                <field name="initial"  >1</field>
+
+            </record>
+
+         <!-- Partner   -->
+
+         <record forcecreate="True" id="base_synchro.synchro_res_partner" model="base.synchro.obj">
+                <field name="name">res.partner clients</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                <field name="initial"  >1</field>
+                <field name="domain"  >[('station_ids','=',station_remote_id)]</field>
+                 <field name="model_id" ref="base.model_res_partner" />
+                <field name="sequence"  >12</field>
+
+            </record>
+
+
+
+      <!--  Stock  -->
+
+
+            <record forcecreate="True" id="base_synchro.synchro_stock_warehouse" model="base.synchro.obj">
+                <field name="name">stock.warehouse</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                <field name="domain"  >[('station_id','=',station_remote_id)]</field>
+                 <field name="model_id" ref="stock.model_stock_warehouse" />
+                <field name="sequence"  >13</field>
+            </record>
+
+         <record forcecreate="True" id="base_synchro.synchro_stock_location" model="base.synchro.obj">
+                <field name="name">stock.location</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="domain"  >[('station_id','=',station_remote_id)]</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="stock.model_stock_location" />
+                <field name="sequence"  >14</field>
+            </record>
+
+        <record forcecreate="True" id="base_synchro.synchro_petrol_station_reservoir" model="base.synchro.obj">
+                <field name="name">petrol_station_reservoir</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                 <field name="domain"  >[('station_id','=',station_remote_id)]</field>
+                <field name="active"  >1</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_reservoir" />
+                <field name="sequence"  >15</field>
+
+        </record>
+
+        <record forcecreate="True" id="base_synchro.synchro_petrol_station_pompe" model="base.synchro.obj">
+                <field name="name">petrol.station.pompe</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                 <field name="domain"  >[('station_id','=',station_remote_id)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_pompe" />
+                <field name="sequence"  >16</field>
+
+        </record>
+
+            <record forcecreate="True" id="base_synchro.synchro_petrol_station_moyen_paiement" model="base.synchro.obj">
+                <field name="name">petrol.station.moyen.paiement</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >d</field>
+                <field name="active"  >1</field>
+                <field name="initial"  >1</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_moyen_paiement" />
+                <field name="sequence"  >17</field>
+
+            </record>
+
+         <record forcecreate="True" id="base_synchro.synchro_petrol_station_recette" model="base.synchro.obj">
+                <field name="name">petrol.station.recette</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+                <field name="domain"  >[('valide','=',True)]</field>
+                <field name="model_id" ref="petrol_station_doosys.model_petrol_station_recette" />
+                <field name="sequence"  >18</field>
+
+            </record>
+
+
+         <record forcecreate="True" id="base_synchro.synchro_petrol_station_paiement" model="base.synchro.obj">
+                <field name="name">petrol.station.paiement</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+              <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_paiement" />
+                <field name="sequence"  >20</field>
+
+            </record>
+
+         <record forcecreate="True" id="base_synchro.synchro_petrol_station_boncommande" model="base.synchro.obj">
+                <field name="name">petrol.station.boncommande</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+             <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_boncommande" />
+                <field name="sequence"  >21</field>
+
+            </record>
+
+        <record forcecreate="True" id="base_synchro.synchro_petrol_station_paiement" model="base.synchro.obj">
+                <field name="name">petrol.station.paiement</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+            <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_paiement" />
+                <field name="sequence"  >22</field>
+
+            </record>
+         <record forcecreate="True" id="base_synchro.synchro_petrol_station_stock" model="base.synchro.obj">
+                <field name="name">petrol.station.stock</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+             <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_stock" />
+                <field name="sequence"  >23</field>
+
+            </record>
+
+         <record forcecreate="True" id="base_synchro.synchro_petrol_station_depense" model="base.synchro.obj">
+                <field name="name">petrol.station.depense</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+             <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_depense" />
+                <field name="sequence"  >23</field>
+
+            </record>
+        <record forcecreate="True" id="base_synchro.synchro_petrol_station_vente_service" model="base.synchro.obj">
+                <field name="name">petrol.station.vente.service</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+            <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_vente_service" />
+                <field name="sequence"  >24</field>
+
+            </record>
+        <record forcecreate="True" id="base_synchro.synchro_petrol_station_volumcomteur" model="base.synchro.obj">
+                <field name="name">petrol.station.volumcomteur</field>
+                <field name="server_id" ref="base_synchro.server_1" />
+                <field name="action"  >u</field>
+                <field name="active"  >1</field>
+            <field name="domain"  >[('valide','=',True)]</field>
+                 <field name="model_id" ref="petrol_station_doosys.model_petrol_station_volumcomteur" />
+                <field name="sequence"  >25</field>
+
+            </record>
+
+
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+     <record id="sap_objects_form" model="ir.ui.view">
+            <field name="name">sap.objects.form</field>
+            <field name="model">sap.objects</field>
+            <field name="arch" type="xml">
+               <form string="Recette">
+                <header>
+                  <button string="Execute" type="object" name="sycnhro" class="oe_highlight"   />
+
+                </header>
+                <sheet string="Recette">
+                    <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                    <group>
+                      <field name="name"/>
+                      <field name="link_sap"/>
+                       <field name="model_id"/>
+                       <field name="type"/>
+                        <field name="domain"/>
+                         <field name="date_last_synchro"/>
+                         <field name="filtre"/>
+                           <field name="active_field"/>
+                           <field name="is_ligne_price_list"/>
+                        <field name="sequence"/>
+                    </group>
+                    <field name="line_ids" >
+                        <tree editable="buttom">
+                             <field name="sequance" widget="handle"/>
+                             <field name="field_id"  domain="[('model_id','=',parent.model_id)]"/>
+                             <field name="field_name_sap"/>
+                            <field name="relation_id"/>
+                            <field name="default_value"/>
+                            <field name="one2many"/>
+
+                             <field name="primar"/>
+
+
+                        </tree>
+                    </field>
+                </sheet>
+               </form>
+            </field>
+
+     </record>
+
+
+      <record model="ir.actions.act_window" id="sap_objects_action">
+      <field name="name">SAP Objects</field>
+      <field name="res_model">sap.objects</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+
+    <menuitem name="SAP " id="menu_sap_menu" parent="base.menu_administration"
+              />
+       <menuitem name="SAP Objects" id="menu_sap_objects_action" parent="menu_sap_menu"
+              action="sap_objects_action" />
+
+       <record id="sap_synchro_line_tree" model="ir.ui.view">
+            <field name="name">sap.synchro.line.tree</field>
+            <field name="model">sap.synchro.line</field>
+            <field name="arch" type="xml">
+                <tree  >
+                         <field name="date"/>
+                    <field name="sap_objet_id"/>
+                    <field name="local"/>
+                    <field name="remote"/>
+                </tree>
+            </field>
+       </record>
+
+       <record model="ir.actions.act_window" id="sap_synchro_line_action">
+      <field name="name">SAP synchro</field>
+      <field name="res_model">sap.synchro.line</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+              <record model="ir.actions.act_window" id="sap_synchro_serve_action">
+      <field name="name">SAP serveur</field>
+      <field name="res_model">sap.server</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+      <record id="sap_synchro_report_tree_view" model="ir.ui.view">
+            <field name="name">sap.synchro.report.tree</field>
+            <field name="model">sap.synchro.report</field>
+            <field name="arch" type="xml">
+                <tree string="Report">
+                        <field name="date"/>
+                        <field name="report" />
+
+                </tree>
+            </field>
+        </record>
+
+      <record model="ir.actions.act_window" id="sap_synchro_report_action">
+          <field name="name">SAP Objects</field>
+          <field name="res_model">sap.synchro.report</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+       <menuitem name="SAP Rapport" id="sap_synchro_report_menu" parent="menu_sap_menu"
+              action="sap_synchro_report_action" />
+
+      <menuitem name="SAP serveur" id="sap_synchro_serveur_menu" parent="menu_sap_menu"
+              action="sap_synchro_serve_action" />
+    <menuitem name="SAP Synchronisation" id="sap_synchro_line_menu" parent="menu_sap_menu"
+              action="sap_synchro_line_action" />
+
+  </data>
+</odoo>

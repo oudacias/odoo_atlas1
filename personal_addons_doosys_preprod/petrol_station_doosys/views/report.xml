@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="rapport_journalier_station_action"
+            model="petrol.station.recette"
+            string="Rapport Journalier"
+            report_type="qweb-pdf"
+            name="petrol_station_doosys.rapport_journalier_station"
+            file="petrol_station_doosys.rapport_journalier_station"
+            print_report_name="(object._get_printed_report_name())"
+        />
+       </data>
+       <data>
+        <template id="rapport_journalier_station_template">
+                     <t t-call="web.external_layout">
+                <div class="page">
+                <div class="row">
+             <p style="font-size:16px; " align="center">Rapport Journalier du <span t-field="o.date_recette"/></p>
+
+                </div>
+                <div class="row">
+                <!--partie 1-->
+                    <t t-set="product_carburant" t-value="[]"/>
+                    <t t-foreach="o.volumconteur_ids" t-as="l">
+                        <t t-if="l.product_id not in  product_carburant">
+                        <t t-set="product_carburant" t-value="product_carburant+[l.product_id]"/>
+                     </t>
+                     </t>
+                     <t t-set="total_carburant_ca" t-value="0"/>
+                     <t t-foreach="set(product_carburant)" t-as="product">
+                            <table class="table table-condensed" style="width:100% ;">
+                                <thead>
+                                    <tr>                                
+                                        <th>     
+                                            <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Volucompteurs">
+                                                <thead>
+                                                        <tr>
+                                                        <th style="font-size:8px; and;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " colspan="4" align="center"><strong t-esc="product.name"/></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color: #ff751a; " align="center">Pompe</th>
+                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color: #ff751a; " align="center">Compt Initial</th>
+                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color: #ff751a; " align="center">Compt Final</th>
+                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color: #ff751a; " align="center">Compt Sorties</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="invoice_tbody">
+                                                    <t t-set="total_sortie" t-value="0"/>
+                                                    <tr t-foreach="o.volumconteur_ids" t-as="l">
+                                                    <t t-if="product.id==l.product_id.id">
+                                                        <t t-set="total_sortie" t-value="total_sortie+l.sortie"/>
+                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.pompe_id"/></td>
+                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.compteur1"/></td>
+                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.compteur2"/></td>
+                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.sortie"/></td>
+                                                        </t>
+                                                    </tr>
+                                                   <tr  t-foreach="o.volumconteur_ids" t-as="l">
+                                                      <t   t-set="total_volume_ca" t-value="l.prix_unitaire*total_sortie"/>
+                                                    <t t-set="total_carburant_ca" t-value="total_carburant_ca+total_volume_ca"/>
+                                                     <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" colspan="4" align="center">P.U: <span t-esc="l.prix_unitaire"/> - <span t-esc="total_sortie"/> (litres) - <span t-esc="total_volume_ca"/> (Dhs)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    </t>
+
+                </div>
+                <div class="row">
+                                            <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="font-size:8px; color:black;background-color: #A9A9A9;" align="left"> <span>Total Carburant:</span>  </th>
+                                                        <th style="font-size:8px;  color:black;background-color: #A9A9A9;" align="right"> <span t-esc="total_carburant_ca"/>(Dhs) </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                    
+                </div>
+                <!--partie 2-->
+            <div class="row">
+
+                    <table class="table table-condensed" style="width:100% ;">
+                        <thead>
+                            <tr>
+                                <th style="width:33% ;">     
+                                    <p style="color: #ff751a; font-size:12px; " align="left">Citernes :</p>               
+
+                                </th>
+                                <th style="width:33% ;">  
+                                    <p style="color: #ff751a; font-size:12px; " align="left">Service :</p>                   
+
+                                 </th>
+                                <th style="width:33% ;">  
+                                    <p style="color: #ff751a; font-size:12px; " align="left">Dépenses:</p>                  
+
+                             </th>
+                            </tr>
+                        </thead>
+                        
+                        
+                                        <tbody class="invoice_tbody">
+                                            <tr>
+                                                <td style="width:33% ;">
+                                                          <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Volucompteurs">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Produit</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Stock Initial</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Entrées</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Sorties</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Stock Comptable</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Stock Physique</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Prix Coût</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Valeurs</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="invoice_tbody">
+                                                                <tr t-foreach="o.stock_ids" t-as="l">
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.product_id"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.stock_initiale"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.entree"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.sortie"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.stock_compatble"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.stock_physique"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.prix_cout"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.cout_stock_physique"/></td>
+                                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                        
+                                                </td>
+                                                <td style="width:33% ;">
+                                                            <table class=" " style="border: 1px solid black; border-collapse: collapse; width:100% ;" name="Volucompteurs">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Type</th>
+                                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Total</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="invoice_tbody">
+                                                                    <tr t-foreach="o.vente_service_ids" t-as="l">
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.produit_id"/></td>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.montant"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center">Total Services</td>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center"><span t-field="o.total_vente_service"/></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                           
+                                                    
+                                                </td>
+                                                <td style="width:33% ;">
+                                                     <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Volucompteurs">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse;color:white;background-color:#00cc00; " align="center">Type</th>
+                                                                <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse;color:white;background-color:#00cc00; " align="center">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="invoice_tbody">
+                                                            <tr t-foreach="o.depense_ids" t-as="l">
+                                                                <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.produit_id"/></td>
+                                                                <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-field="l.montant"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center">Total</td>
+                                                                <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center"><span t-field="o.total_depense"/></td>
+                                                            </tr>
+                                                            </tbody>
+                                                    </table>  
+                                                    
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                    </table>
+                </div>              
+<!--Crédit, Régelement Crédit -->
+                <div class="row">
+                    <table class="table table-condensed" style="width:100% ;">
+                        <thead>
+                            <tr>
+                                <th>     
+                                    <p style="color: #ff751a; font-size:12px; " align="left">Crédit:</p>               
+
+                                        
+                                </th>
+<!--groupy par bon-->
+                                <th>  
+
+                           
+                                 </th>                              
+                                <th>  
+                                    <p style="color: #ff751a; font-size:12px; " align="left">Reglement Crédit :</p>                  
+
+                             </th>
+                             
+                             
+
+                            </tr>
+                        </thead>
+                    
+                     <tbody class="invoice_tbody">
+
+                                            <tr>
+                                                <td>
+                                                   <t t-set="credit_client" t-value="[]"/>
+                                                            <t t-foreach="o.boncommande_ids" t-as="l">
+                                                                  <t t-if="l.client_id not in  credit_client">
+                                                                <t t-set="credit_client" t-value="credit_client+[l.client_id]"/>
+                                                             </t>
+                                                     </t>   
+                                                         <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Credit">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Type</th>
+                                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Total</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="invoice_tbody">
+                        
+                                                                <tr t-foreach="credit_client" t-as="crdit_client">
+                                                                <t t-set="total_by_client_credit" t-value="0"/>
+                                                                <t t-foreach="o.boncommande_ids" t-as="l">
+                                                                                <t t-if="l.client_id==crdit_client">
+                                                                                             <t t-set="total_by_client_credit" t-value="total_by_client_credit+l.montant"/>
+                                                                                    </t>
+                                                                </t>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-esc="crdit_client.name"/></td>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-esc="total_by_client_credit"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center">Total</td>
+                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center"><span t-field="o.total_credit_client_prix"/></td>
+                                                                    </tr>                                            
+                                                                </tbody>
+                                                            </table>
+                                                </td>
+                                                <td>
+                                                                                            
+                                                     <t t-set="paiement_type_bon" t-value="[]"/>
+                                                            <t t-foreach="o.paiement_ids" t-as="p">
+                                                                <t t-if="p.type_paiement_id.name=='Bon'">
+                                                                <t t-if="p.type_paiement_id not in  paiement_type_bon">
+                                                                <t t-set="paiement_type_bon" t-value="paiement_type_bon+[p.id]"/>
+                                                             </t> 
+                                                             </t> 
+                                                             </t>
+                                                            <t t-set="paiement_type_partenaire" t-value="[]"/>
+                                                            <t t-foreach="o.paiement_ids" t-as="p">
+                                                                <t t-if="p.id in paiement_type_bon">
+                                                                <t t-if="p.client_id not in  paiement_type_partenaire">
+                                                                <t t-set="paiement_type_partenaire" t-value="paiement_type_partenaire+[p.client_id]"/>
+                                                             </t> 
+                                                             </t> 
+                                                             </t> 
+                                                                            <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Volucompteurs">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Bon</th>
+                                                                                        <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:white;background-color:#00cc00; " align="center">Montant</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody class="invoice_tbody">
+                                                                                
+                                                                                <tr t-foreach="paiement_type_partenaire" t-as="partenaire">
+                                                                                    <t t-set="total_by_type_partenaire" t-value="0"/>
+                                                                                    <t t-foreach="o.paiement_ids" t-as="l">
+                                                                                           <t t-if="l.id in paiement_type_bon">
+                                                                                           <t t-if="l.client_id==partenaire">
+                                                                                             <t t-set="total_by_type_partenaire" t-value="total_by_type_partenaire+l.montant"/>
+                                                                                    </t>
+                                                                                    </t>
+                                                                                    </t>
+                                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span>Bon </span><span t-esc="partenaire.name"/></td>
+                                                                                        <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-esc="total_by_type_partenaire"/></td>
+                                                                                        
+                                                                                    
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                </td>
+                                                <td>       
+                                                     <t t-set="reg_credit_client" t-value="[]"/>
+                                                            <t t-foreach="o.reglement_credits_ids" t-as="l">
+                                                                  <t t-if="l.client_id1 not in  reg_credit_client">
+                                                                <t t-set="reg_credit_client" t-value="reg_credit_client+[l.client_id1]"/>
+                                                             </t>
+                                                     </t>                             
+                                                        <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Volucompteurs">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse;color:white;background-color:#00cc00; " align="center">Type</th>
+                                                                    <th style="font-size:8px;  border: 1px solid black;border-collapse: collapse;color:white;background-color:#00cc00; " align="center">Total</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="invoice_tbody">
+                                                                <tr t-foreach="reg_credit_client" t-as="rg_crdit_client">
+                                                                <t t-set="total_by_client_reg_credit" t-value="0"/>
+                                                                <t t-foreach="o.reglement_credits_ids" t-as="l">
+                                                                                <t t-if="l.client_id1==rg_crdit_client">
+                                                                                             <t t-set="total_by_client_reg_credit" t-value="total_by_client_reg_credit+l.montant"/>
+                                                                                    </t>
+                                                                </t>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-esc="rg_crdit_client.name"/></td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left"><span t-esc="total_by_client_reg_credit"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center">Total Services</td>
+                                                                    <td style="font-size:8px;  border: 1px solid black;border-collapse: collapse; color:black;background-color: #A9A9A9;" align="center"><span t-field="o.total_reglement_credit"/></td>
+                                                                </tr>                                            
+                                                            </tbody>
+                                                        </table>
+                                        
+                                    </td>
+                                            </tr>
+                                         
+                    </tbody> 
+                    </table>
+                </div>
+            <div class="row">
+                    <t t-set="paiement_type" t-value="[]"/>
+                    <t t-foreach="o.paiement_ids" t-as="p">
+                        <t t-if="p.type_paiement_id.name!='Bon'">
+                        <t t-if="p.type_paiement_id not in  paiement_type">
+                        <t t-set="paiement_type" t-value="paiement_type+[p.type_paiement_id]"/>
+                     </t> 
+                     </t> 
+                     </t> 
+                                     <table class=" " style="border: 1px solid black; border-collapse: collapse;width:100% ;" name="Volucompteurs">
+                                        <thead>
+                                                 <tr>
+                                                <td t-foreach="set(paiement_type)" t-as="type" style="font-size:8px;  border: 1px solid black;border-collapse: collapse;" align="left">
+                                            <t t-set="total_by_type" t-value="0"/>
+                                            <t t-foreach="o.paiement_ids" t-as="l">
+                                                   <t t-if="l.type_paiement_id==type">
+                                                     <t t-set="total_by_type" t-value="total_by_type+l.montant"/>
+                                            </t>
+                                            </t>
+                                                <span t-esc="type.name"/><span>: </span> <span t-esc="total_by_type"/></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                           
+            </div>
+                </div>
+            </t>
+        </template>
+               <template id="rapport_journalier_station">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="petrol_station_doosys.rapport_journalier_station_template" />
+                </t>
+            </t>
+        </template>
+        
+       </data>
+    
+</odoo>
