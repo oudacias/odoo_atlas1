@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hana_objects_admin,acces hana.objects admin,model_hana_objects,base.group_system,1,1,1,1
-access_hana_objects_line_admin,acces hana.objects.line admin,model_hana_objects_line,base.group_system,1,1,1,1
